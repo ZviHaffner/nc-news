@@ -4,9 +4,9 @@ export const CommentCard = ({ comment }) => {
 
   return (
     <section className="comment-card">
-      <p>{comment.author}</p>
+      <p id="author">{comment.author}</p>
       <p>{comment.body}</p>
-      <p>Date Created: {formattedDate}</p>
+      <p id="date">Date Created: {formattedDate}</p>
     </section>
   );
 };

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticleById } from "../api";
 import { Comments } from "./Comments";
+import { ArticleVote } from "./ArticleVote";
 
 export const Article = () => {
   const { article_id } = useParams();
-  const [article, setArticle] = useState({});
+
+  const [articleById, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [error, setError] = useState(null);
@@ -28,7 +30,7 @@ export const Article = () => {
   if (error) {
     return (
       <>
-        <h1>{error.response.status}</h1>
+        <h2>{error.response.status}</h2>
         <p>{error.response.data.msg}</p>
       </>
     );
@@ -36,20 +38,21 @@ export const Article = () => {
 
   if (!isLoading) {
     const topic =
-      article.topic.charAt(0).toUpperCase() + article.topic.slice(1);
-      const date = new Date(article.created_at);
-      const formattedDate = date.toLocaleDateString();
+      articleById.topic.charAt(0).toUpperCase() + articleById.topic.slice(1);
+    const date = new Date(articleById.created_at);
+    const formattedDate = date.toLocaleDateString();
 
     return (
       <>
         <article className="article">
-          <h2>{article.title}</h2>
-          <p>By: {article.author}</p>
+          <h2>{articleById.title}</h2>
+          <p>By: {articleById.author}</p>
           <p>Topic: {topic}</p>
           <p>Created On: {formattedDate}</p>
-          <img src={article.article_img_url} />
-          <section>{article.body}</section>
+          <img src={articleById.article_img_url} />
+          <section>{articleById.body}</section>
         </article>
+        <ArticleVote articleId={article_id} />
         <div className="comments-container">
           <button onClick={handleClick}>
             {!buttonClicked ? "SHOW" : "HIDE"} COMMENTS
