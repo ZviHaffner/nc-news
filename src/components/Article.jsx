@@ -37,7 +37,8 @@ export const Article = () => {
   if (!isLoading) {
     const topic =
       article.topic.charAt(0).toUpperCase() + article.topic.slice(1);
-    const date = article.created_at.split("T")[0];
+      const date = new Date(article.created_at);
+      const formattedDate = date.toLocaleDateString();
 
     return (
       <>
@@ -45,7 +46,7 @@ export const Article = () => {
           <h2>{article.title}</h2>
           <p>By: {article.author}</p>
           <p>Topic: {topic}</p>
-          <p>Created On: {date}</p>
+          <p>Created On: {formattedDate}</p>
           <img src={article.article_img_url} />
           <section>{article.body}</section>
         </article>
