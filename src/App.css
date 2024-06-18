@@ -43,3 +43,29 @@ nav {
 #article-img {
   width: 20rem;
 }
+
+.article {
+  background-color: rgba(0, 0, 255, 0.2);
+  border: 0.2rem solid blue;
+  margin: 2rem;
+}
+
+.article p {
+  text-align: left;
+  margin: 0 1rem 0 1rem;
+  font-size: 1rem;
+}
+
+.article h2 {
+margin: 1rem;
+}
+
+.article img {
+  margin: 1rem;
+  width: 30rem;
+}
+
+.article section {
+  text-align:justify;
+  margin: 1rem;
+}
