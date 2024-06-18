@@ -1,33 +1,61 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticleById } from "../api";
+import { Comments } from "./Comments";
 
 export const Article = () => {
-  const { id } = useParams();
+  const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getArticleById(id).then(({ data }) => {
-      setArticle(data.article);
-      setIsLoading(false);
-    });
-  }, [id]);
-  
-  if (!isLoading) {
+    getArticleById(article_id)
+      .then(({ data }) => {
+        setArticle(data.article);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
 
-    const topic = article.topic.charAt(0).toUpperCase() + article.topic.slice(1);
+  function handleClick() {
+    setButtonClicked(!buttonClicked);
+  }
+
+  if (error) {
+    return (
+      <>
+        <h1>{error.response.status}</h1>
+        <p>{error.response.data.msg}</p>
+      </>
+    );
+  }
+
+  if (!isLoading) {
+    const topic =
+      article.topic.charAt(0).toUpperCase() + article.topic.slice(1);
     const date = article.created_at.split("T")[0];
 
     return (
-      <article className="article">
-        <h2>{article.title}</h2>
-        <p>By: {article.author}</p>
-        <p>Topic: {topic}</p>
-        <p>Created On: {date}</p>
-        <img src={article.article_img_url} />
-        <section>{article.body}</section>
-      </article>
+      <>
+        <article className="article">
+          <h2>{article.title}</h2>
+          <p>By: {article.author}</p>
+          <p>Topic: {topic}</p>
+          <p>Created On: {date}</p>
+          <img src={article.article_img_url} />
+          <section>{article.body}</section>
+        </article>
+        <div className="comments-container">
+          <button onClick={handleClick}>
+            {!buttonClicked ? "SHOW" : "HIDE"} COMMENTS
+          </button>
+          {buttonClicked ? <Comments articleId={article_id} /> : null}
+        </div>
+      </>
     );
   }
 

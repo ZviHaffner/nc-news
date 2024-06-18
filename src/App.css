@@ -69,3 +69,25 @@ margin: 1rem;
   text-align:justify;
   margin: 1rem;
 }
+
+.comments-container {
+  background-color: rgba(255, 166, 0, 0.2);
+  border: 0.2rem solid orange;
+  margin: 2rem;
+}
+
+.comment-card {
+  background-color: rgba(128, 0, 128, 0.2);
+  border: 0.2rem solid purple;
+  margin: 1rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.comment-card p{
+  text-align: left;
+}
+
+.comments-container button{
+  margin: 1rem;
+}
