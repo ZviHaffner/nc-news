@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getCommentsByArticleId } from "../api";
 import { CommentCard } from "./CommentsCard";
+import { CommentForm } from "./CommentForm";
 
 export const Comments = ({ articleId }) => {
   const [comments, setComments] = useState([]);
@@ -31,6 +32,7 @@ export const Comments = ({ articleId }) => {
   if (!isLoading) {
     return (
       <section className="comments">
+        <CommentForm articleId={articleId} comments={comments} setComments={setComments} />
         {comments.map((comment) => {
           return (
             <CommentCard
