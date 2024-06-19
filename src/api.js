@@ -20,3 +20,11 @@ export const changeArticleVotes = (articleId, votes) => {
   const reqBody = { inc_votes: votes };
   return newsApi.patch(`/articles/${articleId}`, reqBody);
 };
+
+export const addComment = (articleId, username, comment) => {
+  const reqBody = {
+    username: username,
+    body: comment,
+  };
+  return newsApi.post(`/articles/${articleId}/comments`, reqBody);
+};
