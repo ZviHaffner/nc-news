@@ -3,6 +3,24 @@
   border-radius: 0.5rem;
 }
 
+.header {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 0.2rem solid red;
+  margin: 2rem;
+  margin-bottom: 0;
+}
+
+.header a {
+  color: grey;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.header p {
+  color: grey;
+  margin: 0;
+  font-weight: 500;
+}
+
 nav {
   background-color: rgba(0, 128, 0, 0.2);
   border: 0.2rem solid green;
@@ -10,11 +28,29 @@ nav {
   margin-top: 0;
 }
 
-.header {
-  background-color: rgba(255, 0, 0, 0.2);
-  border: 0.2rem solid red;
-  margin: 2rem;
-  margin-bottom: 0;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+  background-color: darkgreen;
+  border-radius: 5px;
 }
 
 .articles {
@@ -44,6 +80,33 @@ nav {
   width: 20rem;
 }
 
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(0, 0, 255, 0.2);
+  border: 0.2rem solid blue;
+  margin: 2rem;
+}
+
+.user-card {
+  background-color: rgba(255, 166, 0, 0.2);
+  border: 0.2rem solid orange;
+  margin: 1rem;
+  padding: 1rem;
+  flex-basis: 20vw;
+  flex-grow: 1;
+  cursor:pointer
+}
+
+#user-img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
 .article {
   background-color: rgba(0, 0, 255, 0.2);
   border: 0.2rem solid blue;
@@ -57,7 +120,7 @@ nav {
 }
 
 .article h2 {
-margin: 1rem;
+  margin: 1rem;
 }
 
 .article img {
@@ -66,7 +129,7 @@ margin: 1rem;
 }
 
 .article section {
-  text-align:justify;
+  text-align: justify;
   margin: 1rem;
 }
 
@@ -76,7 +139,7 @@ margin: 1rem;
   margin: 2rem;
 }
 
-.comments form{
+.comments form {
   background-color: rgba(144, 238, 144, 0.2);
   border: 0.2rem solid lightgreen;
   text-align: left;
@@ -112,19 +175,32 @@ margin: 1rem;
   text-align: left;
 }
 
-.comment-card p{
+.comment-card p {
   text-align: left;
 }
 
-.comment-card #author{
+.comment-card #author {
   font-weight: 600;
 }
 
-.comment-card #date{
+.comment-card #date {
   font-size: 0.7rem;
 }
 
-.comments-container button{
+.comment-card #delete-button {
+  font-size: 0.7rem;
+  margin: 0;
+  color: red;
+  border: 1px solid red;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.comment-card #delete-button:hover {
+  color: white;
+  background-color: red;
+}
+
+.comments-container button {
   margin: 1rem;
 }
 
@@ -135,7 +211,7 @@ margin: 1rem;
   padding: 0 1rem 1rem 1rem;
 }
 
-.article-votes #error-msg p{
+.article-votes #error-msg p {
   margin: 0;
   color: red;
   font-size: 0.7rem;

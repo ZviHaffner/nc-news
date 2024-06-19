@@ -8,40 +8,41 @@ export const CommentForm = ({ articleId, comments, setComments }) => {
   const [error, setError] = useState(null);
   const [usernameErrorMsg, setUsernameErrorMsg] = useState(null);
   const [commentErrorMsg, setCommentErrorMsg] = useState(null);
+  const [postFeedback, setPostFeedback] = useState('Posting...')
 
   const handleUsernameBlur = () => {
     if (usernameInput.length < 2) {
-      setUsernameErrorMsg('Username must be longer than 1 character.');
+      setUsernameErrorMsg("Username must be longer than 1 character.");
     } else {
-      setUsernameErrorMsg('');
+      setUsernameErrorMsg("");
     }
   };
-  
+
   const handleCommentBlur = () => {
     if (commentInput.length === 0) {
-      setCommentErrorMsg('Insert Comment');
+      setCommentErrorMsg("Insert Comment");
     } else {
-      setCommentErrorMsg('');
+      setCommentErrorMsg("");
     }
   };
 
   function handleSubmit(event) {
     event.preventDefault();
-    const now = new Date();
-    const isoString = now.toISOString();
+    setPostFeedback('Posting...')
     setError(null);
     setIsSubmitted(true);
-    setComments((currentComments) => [
-      { author: usernameInput, body: commentInput, created_at: isoString },
-      ...currentComments,
-    ]);
-    addComment(articleId, usernameInput, commentInput).catch((err) => {
-      setIsSubmitted(false);
-      setError(err);
-      setComments(comments);
-    });
-    setUsernameInput('')
-    setCommentInput('')
+    addComment(articleId, usernameInput, commentInput)
+      .then((response) => {
+        setPostFeedback('Comment Submitted!')
+        setComments([response.data.comment, ...comments]);
+      })
+      .catch((err) => {
+        setIsSubmitted(false);
+        setError(err);
+        setComments(comments);
+      });
+    setUsernameInput("");
+    setCommentInput("");
   }
 
   return (
@@ -75,7 +76,7 @@ export const CommentForm = ({ articleId, comments, setComments }) => {
       </button>
       {isSubmitted ? (
         <div id="success-msg">
-          <p>Comment Submitted</p>
+          <p>{postFeedback}</p>
         </div>
       ) : null}
       {error ? (

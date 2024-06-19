@@ -8,6 +8,7 @@ export const Comments = ({ articleId }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deleteFeedback, setDeleteFeedback] = useState('');
 
   useEffect(() => {
     getCommentsByArticleId(articleId)
@@ -38,6 +39,9 @@ export const Comments = ({ articleId }) => {
             <CommentCard
               key={comment.comment_id}
               comment={comment}
+              comments={comments} 
+              setComments={setComments}
+              setDeleteFeedback={setDeleteFeedback}
             ></CommentCard>
           );
         })}
