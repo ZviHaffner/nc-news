@@ -216,3 +216,13 @@ nav {
   color: red;
   font-size: 0.7rem;
 }
+
+.sort-form select{
+  margin: 0.2rem;
+  height: 2rem;
+}
+
+.sort-form button{
+  margin: 0.2rem;
+  font-size: small;
+}
