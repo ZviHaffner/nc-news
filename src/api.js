@@ -8,6 +8,10 @@ export const getAllArticles = () => {
   return newsApi.get("/articles");
 };
 
+export const getAllUsers = () => {
+  return newsApi.get("/users");
+};
+
 export const getArticleById = (articleId) => {
   return newsApi.get(`/articles/${articleId}`);
 };
@@ -27,4 +31,8 @@ export const addComment = (articleId, username, comment) => {
     body: comment,
   };
   return newsApi.post(`/articles/${articleId}/comments`, reqBody);
+};
+
+export const deleteComment = (commentId) => {
+  return newsApi.delete(`/comments/${commentId}`);
 };
