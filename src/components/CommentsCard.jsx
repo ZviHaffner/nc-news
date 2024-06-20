@@ -33,6 +33,7 @@ export const CommentCard = ({ comment, comments, setComments, setDeleteFeedback 
           id="delete-button"
           onClick={handleDelete}
           value={comment.comment_id}
+          disabled={buttonTxt === 'DELETING...' || buttonTxt === 'Comment deleted successfully!'}
         >
           {buttonTxt}
         </button>
