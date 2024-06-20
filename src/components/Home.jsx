@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { getAllArticles } from "../api";
+import { getArticles } from "../api";
 import { ArticleCard } from "./ArticleCard";
+import { useParams } from "react-router-dom";
 
 export const Home = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { topic } = useParams();
+
   useEffect(() => {
-    getAllArticles()
+    getArticles(topic)
       .then((result) => {
         setArticles(result.data.articles);
         setIsLoading(false);
@@ -16,7 +19,7 @@ export const Home = () => {
       .catch((err) => {
         setError(err);
       });
-  }, []);
+  }, [topic]);
 
   if (error) {
     return (

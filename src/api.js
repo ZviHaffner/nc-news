@@ -4,8 +4,12 @@ const newsApi = axios.create({
   baseURL: "https://be-project-nc-news.onrender.com/api",
 });
 
-export const getAllArticles = () => {
-  return newsApi.get("/articles");
+export const getArticles = (filter_by) => {
+  return newsApi.get("/articles", { params: { filter_by } });
+};
+
+export const getAllTopics = () => {
+  return newsApi.get("/topics");
 };
 
 export const getAllUsers = () => {
