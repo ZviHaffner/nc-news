@@ -7,12 +7,14 @@ export const ArticleCard = ({ article }) => {
 
   return (
     <section className="article-card">
-      <h2>{article.title}</h2>
-      <img src={article.article_img_url} id="article-img" />
-      <p>By: {article.author}</p>
-      <p>Topic: {topic}</p>
-      <p>Date Created: {formattedDate}</p>
-      <Link to={`/articles/${article.article_id}`}>Read Article</Link>
+      <Link to={`/articles/${article.article_id}`}>
+        <h2>{article.title}</h2>
+        <div className="img-container">
+          <img src={article.article_img_url} id="article-img" />
+        </div>
+        <p>{topic}</p>
+        <p>{formattedDate}</p>
+      </Link>
     </section>
   );
 };

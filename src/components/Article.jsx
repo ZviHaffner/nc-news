@@ -54,9 +54,8 @@ export const Article = () => {
         </article>
         <ArticleVote articleId={article_id} />
         <div className="comments-container">
-          <p>Comments: {articleById.comment_count}</p>
           <button onClick={handleClick}>
-            {!buttonClicked ? "SHOW" : "HIDE"} COMMENTS
+            {!buttonClicked ? "SHOW" : "HIDE"} {articleById.comment_count} COMMENTS
           </button>
           {buttonClicked ? <Comments articleId={article_id} /> : null}
         </div>

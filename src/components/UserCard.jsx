@@ -12,7 +12,7 @@ export const UserCard = ({ user }) => {
   return (
     <section className="user-card" onClick={loginUser}>
       <h3>{user.username}</h3>
-      <img src={user.avatar_url} id="user-img" />
+      <div className="user-img-container"><img src={user.avatar_url} id="user-img" /></div>
       <p>{user.name}</p>
     </section>
   );
