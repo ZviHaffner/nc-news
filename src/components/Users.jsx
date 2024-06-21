@@ -33,7 +33,7 @@ export const Users = () => {
 
   return (
     <>
-      {Object.keys(currentUser).length === 0 ? <p>Select User to Log In</p> : null}
+      {Object.keys(currentUser).length === 0 ? <p id="user-select">Select User to Log In</p> : null}
       <section className="users">
         {users.map((user) => {
           return <UserCard key={user.username} user={user}></UserCard>;
