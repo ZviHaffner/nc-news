@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <section className="header">
-      <Link to={'/'}><img src="../../NC.png" /></Link>
+      <Link to={'/'}><img src="/NC.png" /></Link>
       <h3>Your Home for Truthy News</h3>
       {Object.keys(currentUser).length === 0? !hideOnPaths.includes(location.pathname) && (<Link to={'/users'}>Click Here to Log In</Link>) : <p>Logged In As: {currentUser.username}</p>}
     </section>
