@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { addComment } from "../api";
+import { Link } from "react-router-dom";
 
 export const CommentForm = ({ articleId, comments, setComments }) => {
   const [commentInput, setCommentInput] = useState("");
@@ -46,35 +47,47 @@ export const CommentForm = ({ articleId, comments, setComments }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add Comment</h3>
-      <p>Commenting as {currentUser.username}</p>
-      <label>
-        Comment
-        <input
-          id="comment-input"
-          value={commentInput}
-          onChange={(event) => setCommentInput(event.target.value)}
-          onBlur={handleCommentBlur}
-        />
-      </label>
-      <p id="error-msg">{commentErrorMsg}</p>
-      <button type="submit" disabled={commentInput.length < 1 || isSubmitted}>
-        SUBMIT
-      </button>
-      {isSubmitted ? (
-        <div id="success-msg">
-          <p>{postFeedback}</p>
-        </div>
-      ) : null}
-      {error ? (
-        <div id="error-msg">
-          <p>Something went wrong, please try again.</p>
-          <p>
-            {error.response.status} {error.response.data.msg}
-          </p>
-        </div>
-      ) : null}
-    </form>
+    <>
+      {" "}
+      {Object.keys(currentUser).length === 0 ? (
+        <p>
+          <Link to={"/users"}>Log In</Link> to Comment
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <h3>Add Comment</h3>
+          <p>Commenting as {currentUser.username}</p>
+          <label>
+            Comment
+            <input
+              id="comment-input"
+              value={commentInput}
+              onChange={(event) => setCommentInput(event.target.value)}
+              onBlur={handleCommentBlur}
+            />
+          </label>
+          <p id="error-msg">{commentErrorMsg}</p>
+          <button
+            type="submit"
+            disabled={commentInput.length < 1 || isSubmitted}
+          >
+            SUBMIT
+          </button>
+          {isSubmitted ? (
+            <div id="success-msg">
+              <p>{postFeedback}</p>
+            </div>
+          ) : null}
+          {error ? (
+            <div id="error-msg">
+              <p>Something went wrong, please try again.</p>
+              <p>
+                {error.response.status} {error.response.data.msg}
+              </p>
+            </div>
+          ) : null}
+        </form>
+      )}
+    </>
   );
 };
