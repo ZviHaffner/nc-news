@@ -6,6 +6,7 @@ export const UserCard = ({ user }) => {
 
   const loginUser = () => {
     setCurrentUser(user);
+    alert(`You are now logged in as ${currentUser.username}`)
     localStorage.setItem('user', JSON.stringify(user));
   };
 
